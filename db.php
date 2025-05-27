@@ -1,9 +1,9 @@
 <?php
-$host = "postgres";  // Host público mostrado no Railway
+$host = "postgresql://postgres:oWUrElOFlMbwIopdofSAjZgkclBCXcex@yamabiko.proxy.rlwy.net:24811/railway";  // Host público mostrado no Railway
 $port = "5432";                   // Porta externa informada
 $db   = "railway";                 // Nome do banco (padrão se não tiver mudado)
 $user = "postgres";               // Usuário padrão (confirme se estiver diferente)
-$pass = "QFwpLgxmzRybvZjjSgiEfmuuXJVJWOyl";         // ✅ COPIE da aba "Variables" no Railway (ou "Connect")
+$pass = "oWUrElOFlMbwIopdofSAjZgkclBCXcex";         // ✅ COPIE da aba "Variables" no Railway (ou "Connect")
 
 try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$db", $user, $pass);
