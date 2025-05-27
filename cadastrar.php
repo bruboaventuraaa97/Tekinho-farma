@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: application/json");
 require 'db.php'; // Arquivo com a conexão PDO
 
 // Lê os dados enviados via JSON

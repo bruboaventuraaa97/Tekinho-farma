@@ -9,5 +9,8 @@ try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$db", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erro de conexão: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(["status" => "erro", "mensagem" => "Erro de conexão: " . $e->getMessage()]);
+    exit;
 }
+
