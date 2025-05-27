@@ -76,6 +76,29 @@
     </section>
   </main>
   <script>
+    window.onload = function () {
+  fetch('get_registros.php')
+    .then(response => response.json())
+    .then(data => {
+      const tbody = document.querySelector("table tbody");
+      tbody.innerHTML = '';
+
+      data.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.cpf}</td>
+          <td>${row.nome}</td>
+          <td>${row.endereco}</td>
+          <td>${row.titulo_eleitoral}</td>
+          <td>${row.zona_eleitoral}</td>
+          <td>${row.nome_medicamento}</td>
+          <td>${row.data_solicitacao}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    })
+    .catch(error => console.error("Erro ao buscar dados:", error));
+};
     const cpfInput = document.getElementById("cpf");
 
 cpfInput.addEventListener("input", function () {
