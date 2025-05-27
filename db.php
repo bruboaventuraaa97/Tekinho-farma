@@ -1,9 +1,9 @@
 <?php
-$host = "containers-us-west-42.railway.app"; // substitua pelo host do Railway
-$db   = "railway";                           // nome do banco gerado no Railway
-$user = "usuario";                           // usuário do Railway
-$pass = "senha";                             // senha do Railway
-$port = "0000";                              // porta do banco (geralmente 5432 ou outra informada)
+$host = "postgres.railway.internal";  // Host público mostrado no Railway
+$port = "5432";                   // Porta externa informada
+$db   = "railway";                 // Nome do banco (padrão se não tiver mudado)
+$user = "postgres";               // Usuário padrão (confirme se estiver diferente)
+$pass = "QFwpLgxmzRybvZjjSgiEfmuuXJVJWOyl";         // ✅ COPIE da aba "Variables" no Railway (ou "Connect")
 
 try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$db", $user, $pass);
@@ -13,4 +13,3 @@ try {
     echo json_encode(["status" => "erro", "mensagem" => "Erro de conexão: " . $e->getMessage()]);
     exit;
 }
-
