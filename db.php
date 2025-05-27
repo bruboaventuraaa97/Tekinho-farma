@@ -1,5 +1,5 @@
 <?php
-$host = "postgresql://postgres:oWUrElOFlMbwIopdofSAjZgkclBCXcex@yamabiko.proxy.rlwy.net:24811/railway";  // Host público mostrado no Railway
+$host = "postgre";  // Host público mostrado no Railway
 $port = "5432";                   // Porta externa informada
 $db   = "railway";                 // Nome do banco (padrão se não tiver mudado)
 $user = "postgres";               // Usuário padrão (confirme se estiver diferente)
