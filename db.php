@@ -1,5 +1,5 @@
 <?php
-$host = "postgres.railway.internal";  // Host público mostrado no Railway
+$host = "ballast.uprailway.app";  // Host público mostrado no Railway
 $port = "5432";                   // Porta externa informada
 $db   = "railway";                 // Nome do banco (padrão se não tiver mudado)
 $user = "postgres";               // Usuário padrão (confirme se estiver diferente)
