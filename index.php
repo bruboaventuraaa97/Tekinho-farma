@@ -9,7 +9,7 @@
 <body>
 
   <header>
-    <h1>Tekim Farma</h1>
+  <h1>💊 Tekim Farma</h1>
   </header>
 
   <main class="content">
