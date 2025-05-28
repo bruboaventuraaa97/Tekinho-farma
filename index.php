@@ -85,6 +85,7 @@
 
       data.forEach(row => {
         const tr = document.createElement("tr");
+        tr.dataset.id = row.id;
         tr.innerHTML = `
           <td>${row.cpf}</td>
           <td>${row.nome}</td>
