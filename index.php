@@ -241,9 +241,9 @@
 
 
     document.getElementById("cpf").addEventListener("blur", async function () {
-  const cpf = this.value;
+  const cpf = this.value.replace(/\D/g, ""); // Remove máscara
 
-  if (cpf.length >= 11) {
+  if (cpf.length === 11) {
     try {
       const response = await fetch("buscar_por_cpf.php", {
         method: "POST",
@@ -259,23 +259,21 @@
         document.querySelector("[name='titulo']").value = dados.titulo_eleitoral;
         document.querySelector("[name='zona']").value = dados.zona_eleitoral;
 
-        // Bloqueia os campos preenchidos automaticamente
         document.querySelector("[name='nome']").readOnly = true;
         document.querySelector("[name='endereco']").readOnly = true;
         document.querySelector("[name='titulo']").readOnly = true;
         document.querySelector("[name='zona']").readOnly = true;
       }
 
-      // NOVO: Atualiza a tabela com as solicitações do CPF
+      // Atualiza a tabela com solicitações do CPF
       atualizarTabelaPorCpf(cpf);
-
     } catch (err) {
       console.error("Erro ao buscar CPF:", err);
     }
   }
 });
 
-// Função para atualizar a tabela apenas com registros do CPF informado
+// Função para atualizar a tabela com registros do CPF
 async function atualizarTabelaPorCpf(cpf) {
   try {
     const response = await fetch("get_registros.php?cpf=" + encodeURIComponent(cpf));

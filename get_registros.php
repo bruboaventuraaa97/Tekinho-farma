@@ -1,5 +1,6 @@
 <?php
 
+
 require_once "db.php";
 header("Content-Type: application/json");
 
@@ -7,7 +8,10 @@ $cpf = $_GET['cpf'] ?? null;
 
 try {
   if ($cpf) {
-    $stmt = $pdo->prepare("SELECT * FROM medicamentos_solicitados WHERE cpf = ?");
+    // Remove máscara (por segurança)
+    $cpf = preg_replace('/\D/', '', $cpf);
+
+    $stmt = $pdo->prepare("SELECT * FROM medicamentos_solicitados WHERE REPLACE(REPLACE(REPLACE(cpf, '.', ''), '-', ''), ' ', '') = ?");
     $stmt->execute([$cpf]);
   } else {
     $stmt = $pdo->query("SELECT * FROM medicamentos_solicitados");
