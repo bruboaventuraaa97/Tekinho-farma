@@ -13,6 +13,7 @@
   </header>
 
   <main class="content">
+  <div id="popup-alert" class="popup-alert">Mensagem</div>
     <section class="form-container">
       <h2><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h2>
       <form id="cadastroForm">
@@ -215,7 +216,7 @@ function mostrarPopup(mensagem, erro = false) {
 
 
   </script>
- <div id="popup-alert" class="popup-alert">Mensagem</div>
+ 
 
 
 </body>
