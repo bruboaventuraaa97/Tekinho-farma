@@ -57,10 +57,9 @@
               </div>
             </div>
             <div class="mt-4 d-flex justify-content-center gap-2">
-            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
-            <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
+              <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
+              <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
             </div>
-
           </form>
         </div>
       </div>
@@ -104,95 +103,11 @@
 
   <!-- JS FUNCIONALIDADE -->
   <script>
-    //editar / SALVAR 
-   
-
+    const form = document.getElementById("cadastroForm");
+    const tabela = document.getElementById("listaMedicamentos");
+    const cpfInput = document.getElementById("cpf");
     let idEditando = null;
 
-    function editarLinha(botao) {
-  const linha = botao.closest("tr");
-  const dados = linha.querySelectorAll("td");
-
-  document.getElementById("cpf").value = dados[0].textContent.trim();
-  document.querySelector("[name='nome']").value = dados[1].textContent.trim();
-  document.querySelector("[name='endereco']").value = dados[2].textContent.trim();
-  document.querySelector("[name='titulo']").value = dados[3].textContent.trim();
-  document.querySelector("[name='zona']").value = dados[4].textContent.trim();
-  document.querySelector("[name='medicamento']").value = dados[5].textContent.trim();
-  document.querySelector("[name='data']").value = dados[6].textContent.trim();
-
-  idEditando = linha.dataset.id; // Captura ID da linha
-
-  linha.remove(); // Remove visualmente (será re-renderizado ao salvar)
-}
-
-const dados = {
-  id: idEditando,
-  cpf: form.querySelector("#cpf").value,
-  nome: form.querySelector("[name='nome']").value,
-  endereco: form.querySelector("[name='endereco']").value,
-  titulo_eleitoral: form.querySelector("[name='titulo']").value,
-  zona_eleitoral: form.querySelector("[name='zona']").value,
-  nome_medicamento: form.querySelector("[name='medicamento']").value,
-  data_solicitacao: form.querySelector("[name='data']").value
-};
-
-try {
-  const response = await fetch("cadastrar.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dados)
-  });
-
-  const resultado = await response.json();
-
-  if (resultado.status === "sucesso") {
-    mostrarToastBootstrap(
-    resultado.acao === "inserido" ? "Medicamento cadastrado!" : "Registro atualizado com sucesso!",
-    "success"
-  );
-
-    // Recarregar tabela
-    window.onload();
-
-    form.reset();
-    idEditando = null; // Limpa ID após edição
-  } else {
-    mostrarToastBootstrap("Erro: " + resultado.mensagem, "error");
-  }
-} catch (err) {
-  alert("Erro na requisição: " + err.message);
-}
-
-    window.onload = function () {
-      fetch('get_registros.php')
-        .then(res => res.json())
-        .then(data => {
-          const tbody = document.getElementById("listaMedicamentos");
-          tbody.innerHTML = '';
-          data.forEach(row => {
-            const tr = document.createElement("tr");
-            tr.dataset.id = row.id;
-            tr.innerHTML = `
-              <td>${row.cpf}</td>
-              <td>${row.nome}</td>
-              <td>${row.endereco}</td>
-              <td>${row.titulo_eleitoral}</td>
-              <td>${row.zona_eleitoral}</td>
-              <td>${row.nome_medicamento}</td>
-              <td>${row.data_solicitacao}</td>
-              <td><button class="btn btn-sm btn-primary me-2" onclick="editarLinha(this)">
-              <i class="fas fa-pen"></i>
-                </button>
-              <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
-            `;
-            tbody.appendChild(tr);
-          });
-        })
-        .catch(err => console.error("Erro ao buscar dados:", err));
-    };
-
-    const cpfInput = document.getElementById("cpf");
     cpfInput.addEventListener("input", function () {
       let value = cpfInput.value.replace(/\D/g, '');
       if (value.length > 11) value = value.slice(0, 11);
@@ -202,13 +117,27 @@ try {
       cpfInput.value = value;
     });
 
-    const form = document.getElementById("cadastroForm");
-    const tabela = document.getElementById("listaMedicamentos");
+    function editarLinha(botao) {
+      const linha = botao.closest("tr");
+      const dados = linha.querySelectorAll("td");
+
+      document.getElementById("cpf").value = dados[0].textContent.trim();
+      document.querySelector("[name='nome']").value = dados[1].textContent.trim();
+      document.querySelector("[name='endereco']").value = dados[2].textContent.trim();
+      document.querySelector("[name='titulo']").value = dados[3].textContent.trim();
+      document.querySelector("[name='zona']").value = dados[4].textContent.trim();
+      document.querySelector("[name='medicamento']").value = dados[5].textContent.trim();
+      document.querySelector("[name='data']").value = dados[6].textContent.trim();
+
+      idEditando = linha.dataset.id;
+      linha.remove();
+    }
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const dados = {
+        id: idEditando,
         cpf: form.querySelector("#cpf").value,
         nome: form.querySelector("[name='nome']").value,
         endereco: form.querySelector("[name='endereco']").value,
@@ -219,37 +148,62 @@ try {
       };
 
       try {
-        const res = await fetch("cadastrar.php", {
+        const response = await fetch("cadastrar.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dados)
         });
 
-        const result = await res.json();
-        if (result.status === "sucesso") {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${dados.cpf}</td>
-            <td>${dados.nome}</td>
-            <td>${dados.endereco}</td>
-            <td>${dados.titulo_eleitoral}</td>
-            <td>${dados.zona_eleitoral}</td>
-            <td>${dados.nome_medicamento}</td>
-            <td>${dados.data_solicitacao}</td>
-            <td><button class="btn btn-sm btn-primary me-2" onclick="editarLinha(this)">
-            <i class="fas fa-pen"></i>
-            </button><button class="btn btn-sm btn-danger" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
-          `;
-          tabela.appendChild(tr);
-          mostrarToastBootstrap("Medicamento cadastrado com sucesso!", "success");
+        const resultado = await response.json();
+
+        if (resultado.status === "sucesso") {
+          mostrarToastBootstrap(
+            resultado.acao === "inserido" ? "Medicamento cadastrado!" : "Registro atualizado com sucesso!",
+            "success"
+          );
           form.reset();
+          idEditando = null;
+          carregarTabela();
         } else {
-          mostrarToastBootstrap("Erro ao cadastrar!", "error");
+          mostrarToastBootstrap("Erro: " + resultado.mensagem, "error");
         }
       } catch (err) {
-        alert("Erro: " + err.message);
+        alert("Erro na requisição: " + err.message);
       }
     });
+
+    async function carregarTabela() {
+      try {
+        const res = await fetch('get_registros.php');
+        const data = await res.json();
+        const tbody = document.getElementById("listaMedicamentos");
+        tbody.innerHTML = '';
+        data.forEach(row => {
+          const tr = document.createElement("tr");
+          tr.dataset.id = row.id;
+          tr.innerHTML = `
+            <td>${row.cpf}</td>
+            <td>${row.nome}</td>
+            <td>${row.endereco}</td>
+            <td>${row.titulo_eleitoral}</td>
+            <td>${row.zona_eleitoral}</td>
+            <td>${row.nome_medicamento}</td>
+            <td>${row.data_solicitacao}</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2" onclick="editarLinha(this)">
+                <i class="fas fa-pen"></i>
+              </button>
+              <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error("Erro ao buscar dados:", err);
+      }
+    }
 
     function deletarLinha(botao) {
       const linha = botao.closest("tr");
@@ -282,6 +236,8 @@ try {
 
       new bootstrap.Toast(toast).show();
     }
+
+    window.onload = carregarTabela;
   </script>
 
 </body>
