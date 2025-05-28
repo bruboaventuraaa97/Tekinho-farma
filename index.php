@@ -163,9 +163,11 @@ cpfInput.addEventListener("input", function () {
         <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
       `;
       tabela.appendChild(novaLinha);
-      mostrarToast("Medicamento cadastrado com sucesso!");
+      mostrarPopup("Medicamento cadastrado com sucesso!");
+
     } else {
-      mostrarToast("Erro ao cadastrar: " + resultado.mensagem, true);
+      mostrarPopup("Erro ao cadastrar: " + resultado.mensagem, true);
+
     }
 
     form.reset();
@@ -212,7 +214,8 @@ function mostrarToast(mensagem, erro = false) {
 
 
   </script>
-  <div id="toast" class="toast">Mensagem</div>
+ <div id="popup-alert" class="popup-alert">Mensagem</div>
+
 
 </body>
 </html>

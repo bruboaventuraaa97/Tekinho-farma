@@ -125,24 +125,27 @@ th {
   color: #a94442;
 }
 
-.toast {
+.popup-alert {
   position: fixed;
-  top: 20px; /* já está no topo */
-  left: 50%; /* centraliza horizontalmente */
-  transform: translateX(-50%) translateY(-20px); /* centraliza e sobe */
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #28a745;
   color: white;
-  padding: 12px 20px;
+  padding: 16px 32px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 16px;
   font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s;
   z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, top 0.4s ease;
 }
-.toast.show {
+
+.popup-alert.show {
   opacity: 1;
-  transform: translateY(0);
+  pointer-events: auto;
 }
 
 
