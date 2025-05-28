@@ -1,11 +1,21 @@
 <?php
-require_once "db.php"; // Inclui a conexão
+
+require_once "db.php";
+header("Content-Type: application/json");
+
+$cpf = $_GET['cpf'] ?? null;
 
 try {
-    $stmt = $pdo->query("SELECT * FROM medicamentos_solicitados ORDER BY id DESC");
-    $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($dados);
+  if ($cpf) {
+    $stmt = $pdo->prepare("SELECT * FROM medicamentos_solicitados WHERE cpf = ?");
+    $stmt->execute([$cpf]);
+  } else {
+    $stmt = $pdo->query("SELECT * FROM medicamentos_solicitados");
+  }
+
+  echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 } catch (PDOException $e) {
-    echo json_encode(["erro" => $e->getMessage()]);
+  echo json_encode(["erro" => $e->getMessage()]);
 }
+
 ?>

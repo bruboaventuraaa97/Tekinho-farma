@@ -240,36 +240,76 @@
     // traga dados do cpf já cadastrado
 
 
-    cpfInput.addEventListener("blur", function () {
-  const cpf = cpfInput.value;
+    document.getElementById("cpf").addEventListener("blur", async function () {
+  const cpf = this.value;
 
-  if (!cpf) return;
+  if (cpf.length >= 11) {
+    try {
+      const response = await fetch("buscar_por_cpf.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cpf })
+      });
 
-  fetch("buscar_dados_por_cpf.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ cpf: cpf })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "sucesso") {
-        document.querySelector("[name='nome']").value = data.dados.nome;
-        document.querySelector("[name='endereco']").value = data.dados.endereco;
-        document.querySelector("[name='titulo']").value = data.dados.titulo_eleitoral;
-        document.querySelector("[name='zona']").value = data.dados.zona_eleitoral;
+      const dados = await response.json();
 
-        mostrarToastBootstrap("Dados carregados com sucesso!", "success");
-      } else if (data.status === "nao_encontrado") {
-        mostrarToastBootstrap("Nenhum dado encontrado para este CPF.", "error");
-      } else {
-        mostrarToastBootstrap("Erro ao buscar dados.", "error");
+      if (dados && dados.nome) {
+        document.querySelector("[name='nome']").value = dados.nome;
+        document.querySelector("[name='endereco']").value = dados.endereco;
+        document.querySelector("[name='titulo']").value = dados.titulo_eleitoral;
+        document.querySelector("[name='zona']").value = dados.zona_eleitoral;
+
+        // Bloqueia os campos preenchidos automaticamente
+        document.querySelector("[name='nome']").readOnly = true;
+        document.querySelector("[name='endereco']").readOnly = true;
+        document.querySelector("[name='titulo']").readOnly = true;
+        document.querySelector("[name='zona']").readOnly = true;
       }
-    })
-    .catch(err => {
-      console.error("Erro:", err);
-      mostrarToastBootstrap("Erro ao buscar dados.", "error");
-    });
+
+      // NOVO: Atualiza a tabela com as solicitações do CPF
+      atualizarTabelaPorCpf(cpf);
+
+    } catch (err) {
+      console.error("Erro ao buscar CPF:", err);
+    }
+  }
 });
+
+// Função para atualizar a tabela apenas com registros do CPF informado
+async function atualizarTabelaPorCpf(cpf) {
+  try {
+    const response = await fetch("get_registros.php?cpf=" + encodeURIComponent(cpf));
+    const registros = await response.json();
+
+    const tbody = document.getElementById("listaMedicamentos");
+    tbody.innerHTML = "";
+
+    registros.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.dataset.id = row.id;
+      tr.innerHTML = `
+        <td>${row.cpf}</td>
+        <td>${row.nome}</td>
+        <td>${row.endereco}</td>
+        <td>${row.titulo_eleitoral}</td>
+        <td>${row.zona_eleitoral}</td>
+        <td>${row.nome_medicamento}</td>
+        <td>${row.data_solicitacao}</td>
+        <td>
+          <button class="btn btn-sm btn-primary me-2" onclick="editarLinha(this)">
+            <i class="fas fa-pen"></i>
+          </button>
+          <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  } catch (err) {
+    console.error("Erro ao buscar solicitações por CPF:", err);
+  }
+}
 
 
 
