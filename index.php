@@ -199,16 +199,17 @@ function deletarLinha(botao) {
 }
 
 // Mostrar Pop de cadastrado com sucesso ou erro no cadastro 
-function mostrarToast(mensagem, erro = false) {
-  const toast = document.getElementById("toast");
-  toast.textContent = mensagem;
-  toast.style.backgroundColor = erro ? "#dc3545" : "#28a745"; // vermelho ou verde
-  toast.classList.add("show");
+function mostrarPopup(mensagem, erro = false) {
+  const popup = document.getElementById("popup-alert");
+  popup.textContent = mensagem;
+  popup.style.backgroundColor = erro ? "#dc3545" : "#28a745";
+  popup.classList.add("show");
 
   setTimeout(() => {
-    toast.classList.remove("show");
+    popup.classList.remove("show");
   }, 3000);
 }
+
 
 
 
