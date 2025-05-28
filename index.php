@@ -56,10 +56,11 @@
                 <input type="date" class="form-control" name="data">
               </div>
             </div>
-            <div class="mt-4 d-flex gap-2">
-              <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
-              <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
+            <div class="mt-4 d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
+            <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
             </div>
+
           </form>
         </div>
       </div>
