@@ -125,4 +125,24 @@ th {
   color: #a94442;
 }
 
+.toast {
+  position: fixed;
+  top: 20px; /* já está no topo */
+  left: 50%; /* centraliza horizontalmente */
+  transform: translateX(-50%) translateY(-20px); /* centraliza e sobe */
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
