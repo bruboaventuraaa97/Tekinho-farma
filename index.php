@@ -98,7 +98,9 @@
           <td>${row.zona_eleitoral}</td>
           <td>${row.nome_medicamento}</td>
           <td>${row.data_solicitacao}</td>
-          <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
+          <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)" title="Excluir">
+        <i class="fas fa-trash-alt"></i>
+        </button>
         `;
         tbody.appendChild(tr);
       });
