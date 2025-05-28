@@ -164,7 +164,10 @@ cpfInput.addEventListener("input", function () {
         <td>${zona}</td>
         <td>${medicamento}</td>
         <td>${data}</td>
-        <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
+        <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)" title="Excluir">
+        <i class="fas fa-trash-alt"></i>
+        </button>
+
       `;
       tabela.appendChild(novaLinha);
       mostrarToastBootstrap("Medicamento cadastrado com sucesso!", "success");
