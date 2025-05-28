@@ -163,9 +163,9 @@ cpfInput.addEventListener("input", function () {
         <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
       `;
       tabela.appendChild(novaLinha);
-      alert("Medicamento cadastrado com sucesso!");
+      mostrarToast("Medicamento cadastrado com sucesso!");
     } else {
-      alert("Erro ao cadastrar: " + resultado.mensagem);
+      mostrarToast("Erro ao cadastrar: " + resultado.mensagem, true);
     }
 
     form.reset();
@@ -196,8 +196,23 @@ function deletarLinha(botao) {
   });
 }
 
+// Mostrar Pop de cadastrado com sucesso ou erro no cadastro 
+function mostrarToast(mensagem, erro = false) {
+  const toast = document.getElementById("toast");
+  toast.textContent = mensagem;
+  toast.style.backgroundColor = erro ? "#dc3545" : "#28a745"; // vermelho ou verde
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+
+
+
 
   </script>
-  
+  <div id="toast" class="toast">Mensagem</div>
+
 </body>
 </html>
