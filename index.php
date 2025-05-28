@@ -202,8 +202,9 @@ function deletarLinha(botao) {
   .then(response => {
     if (response.status === "sucesso") {
       linha.remove();
+      mostrarToastBootstrap("Solicitação Exluída ", "success");
     } else {
-      alert("Erro: " + response.mensagem);
+      mostrarToastBootstrap("Erro ao excluir ", "erro");
     }
   })
   .catch(() => {
