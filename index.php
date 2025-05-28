@@ -237,6 +237,42 @@
       new bootstrap.Toast(toast).show();
     }
 
+    // traga dados do cpf já cadastrado
+
+
+    cpfInput.addEventListener("blur", function () {
+  const cpf = cpfInput.value;
+
+  if (!cpf) return;
+
+  fetch("buscar_dados_por_cpf.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cpf: cpf })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "sucesso") {
+        document.querySelector("[name='nome']").value = data.dados.nome;
+        document.querySelector("[name='endereco']").value = data.dados.endereco;
+        document.querySelector("[name='titulo']").value = data.dados.titulo_eleitoral;
+        document.querySelector("[name='zona']").value = data.dados.zona_eleitoral;
+
+        mostrarToastBootstrap("Dados carregados com sucesso!", "success");
+      } else if (data.status === "nao_encontrado") {
+        mostrarToastBootstrap("Nenhum dado encontrado para este CPF.", "error");
+      } else {
+        mostrarToastBootstrap("Erro ao buscar dados.", "error");
+      }
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+      mostrarToastBootstrap("Erro ao buscar dados.", "error");
+    });
+});
+
+
+
     window.onload = carregarTabela;
   </script>
 
