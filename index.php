@@ -5,6 +5,9 @@
   <title>Tekim Farma</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -164,11 +167,13 @@ cpfInput.addEventListener("input", function () {
         <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
       `;
       tabela.appendChild(novaLinha);
-      exibirAlerta("Medicamento cadastrado com sucesso!", "success");
+      mostrarToastBootstrap("Medicamento cadastrado com sucesso!", "success");
+
 
 
     } else {
-      exibirAlerta("Erro ao cadastrar!", "error");
+      mostrarToastBootstrap("Erro ao cadastrar!", "error");
+
 
 
     }
@@ -201,16 +206,20 @@ function deletarLinha(botao) {
   });
 }
 
-// Mostrar Pop de cadastrado com sucesso ou erro no cadastro 
-function exibirAlerta(mensagem, tipo = "success") {
-  const popup = document.getElementById("alert-popup");
+// Mostrar Pop Cadastro
 
-  popup.textContent = mensagem;
-  popup.className = `alert-popup ${tipo} show`;
+function mostrarToastBootstrap(mensagem, tipo = "success") {
+  const toastEl = document.getElementById("liveToast");
+  const toastBody = document.getElementById("toast-msg");
 
-  setTimeout(() => {
-    popup.classList.remove("show");
-  }, 3000);
+  toastBody.textContent = mensagem;
+
+  // Define cor do toast (success ou danger)
+  toastEl.classList.remove("bg-success", "bg-danger");
+  toastEl.classList.add(tipo === "error" ? "bg-danger" : "bg-success");
+
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
 }
 
 
@@ -219,8 +228,19 @@ function exibirAlerta(mensagem, tipo = "success") {
 
   </script>
  
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+  <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toast-msg">
+        Mensagem aqui
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
 
- <div id="alert-popup" class="alert-popup"></div>
 
 </body>
 </html>

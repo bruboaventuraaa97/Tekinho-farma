@@ -125,36 +125,7 @@ th {
   color: #a94442;
 }
 
-.alert-popup {
-  position: fixed;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 300px;
-  padding: 16px 24px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.3s ease;
-}
 
-.alert-popup.success {
-  background-color: #28a745; /* verde */
-}
-
-.alert-popup.error {
-  background-color: #dc3545; /* vermelho */
-}
-
-.alert-popup.show {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 
 
