@@ -93,6 +93,7 @@
           <td>${row.zona_eleitoral}</td>
           <td>${row.nome_medicamento}</td>
           <td>${row.data_solicitacao}</td>
+          <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
         `;
         tbody.appendChild(tr);
       });
@@ -158,6 +159,7 @@ cpfInput.addEventListener("input", function () {
         <td>${zona}</td>
         <td>${medicamento}</td>
         <td>${data}</td>
+        <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
       `;
       tabela.appendChild(novaLinha);
       alert("Medicamento cadastrado com sucesso!");
@@ -170,6 +172,29 @@ cpfInput.addEventListener("input", function () {
     alert("Erro na requisição: " + error.message);
   }
 });
+// Deletar linha
+function deletarLinha(botao) {
+  const linha = botao.closest("tr");
+  const id = linha.dataset.id;
+
+  fetch("deletar.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id: id })
+  })
+  .then(res => res.json())
+  .then(response => {
+    if (response.status === "sucesso") {
+      linha.remove();
+    } else {
+      alert("Erro: " + response.mensagem);
+    }
+  })
+  .catch(() => {
+    alert("Erro na conexão com o servidor.");
+  });
+}
+
 
   </script>
   
