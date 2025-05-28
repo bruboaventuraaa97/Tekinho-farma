@@ -259,10 +259,7 @@
         document.querySelector("[name='titulo']").value = dados.titulo_eleitoral;
         document.querySelector("[name='zona']").value = dados.zona_eleitoral;
 
-        document.querySelector("[name='nome']").readOnly = true;
-        document.querySelector("[name='endereco']").readOnly = true;
-        document.querySelector("[name='titulo']").readOnly = true;
-        document.querySelector("[name='zona']").readOnly = true;
+       
       }
 
       // Atualiza a tabela com solicitações do CPF
