@@ -245,7 +245,7 @@
 
   if (cpf.length === 11) {
     try {
-      const response = await fetch("buscar_por_cpf.php", {
+      const response = await fetch("buscar_dados_por_cpf.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cpf })
