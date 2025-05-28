@@ -125,27 +125,36 @@ th {
   color: #a94442;
 }
 
-.popup-alert {
+.alert-popup {
   position: fixed;
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #28a745;
-  color: white;
-  padding: 16px 32px;
+  min-width: 300px;
+  padding: 16px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-size: 16px;
   font-weight: bold;
+  font-size: 16px;
+  color: white;
+  text-align: center;
   z-index: 9999;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease, top 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
-.popup-alert.show {
+.alert-popup.success {
+  background-color: #28a745; /* verde */
+}
+
+.alert-popup.error {
+  background-color: #dc3545; /* vermelho */
+}
+
+.alert-popup.show {
   opacity: 1;
   pointer-events: auto;
 }
+
 
 

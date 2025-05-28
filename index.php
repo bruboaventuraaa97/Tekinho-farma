@@ -13,7 +13,7 @@
   </header>
 
   <main class="content">
-  <div id="popup-alert" class="popup-alert">Mensagem</div>
+
     <section class="form-container">
       <h2><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h2>
       <form id="cadastroForm">
@@ -164,10 +164,12 @@ cpfInput.addEventListener("input", function () {
         <td><button class="btn-delete" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
       `;
       tabela.appendChild(novaLinha);
-      mostrarPopup("Medicamento cadastrado com sucesso!");
+      exibirAlerta("Medicamento cadastrado com sucesso!", "success");
+
 
     } else {
-      mostrarPopup("Erro ao cadastrar: " + resultado.mensagem, true);
+      exibirAlerta("Erro ao cadastrar!", "error");
+
 
     }
 
@@ -200,11 +202,11 @@ function deletarLinha(botao) {
 }
 
 // Mostrar Pop de cadastrado com sucesso ou erro no cadastro 
-function mostrarPopup(mensagem, erro = false) {
-  const popup = document.getElementById("popup-alert");
+function exibirAlerta(mensagem, tipo = "success") {
+  const popup = document.getElementById("alert-popup");
+
   popup.textContent = mensagem;
-  popup.style.backgroundColor = erro ? "#dc3545" : "#28a745";
-  popup.classList.add("show");
+  popup.className = `alert-popup ${tipo} show`;
 
   setTimeout(() => {
     popup.classList.remove("show");
@@ -218,6 +220,7 @@ function mostrarPopup(mensagem, erro = false) {
   </script>
  
 
+ <div id="alert-popup" class="alert-popup"></div>
 
 </body>
 </html>
