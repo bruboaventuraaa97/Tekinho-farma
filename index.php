@@ -3,250 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <title>Tekim Farma</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Estilo e ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-  <header>
-  <h1>💊 Tekim Farma</h1>
+  <!-- TOPO -->
+  <header class="bg-primary text-white text-center py-3">
+    <h1>💊 Tekim Farma</h1>
   </header>
 
-  <main class="content">
-
-    <section class="form-container">
-      <h2><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h2>
-      <form id="cadastroForm">
-        <label>CPF:</label>
-        <input type="text" maxlength="14" placeholder="000.000.000-00" id="cpf" required>
-
-        <label>Nome:</label>
-        <input type="text" name="nome" required>
-
-        <label>Endereço:</label>
-        <input type="text" name ="endereco" required>
-
-       
-        <div class="linha">
-            <div class="coluna">
-              <label>Título Eleitoral:</label>
-              <input type="text" name="titulo">
+  <!-- CONTEÚDO -->
+  <main class="container my-4">
+    <div class="row">
+      <!-- FORMULÁRIO -->
+      <div class="col-md-5 mb-4">
+        <div class="card shadow p-3">
+          <h4 class="mb-3"><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h4>
+          <form id="cadastroForm">
+            <div class="mb-3">
+              <label class="form-label">CPF:</label>
+              <input type="text" class="form-control" maxlength="14" placeholder="000.000.000-00" id="cpf" required>
             </div>
-            <div class="coluna">
-              <label>Zona Eleitoral:</label>
-              <input type="text" name="zona">
+            <div class="mb-3">
+              <label class="form-label">Nome:</label>
+              <input type="text" class="form-control" name="nome" required>
             </div>
-          </div>
-        
-          <div class="linha">
-            <div class="coluna">
-              <label>Nome do Medicamento:</label>
-              <input type="text" name="medicamento">
+            <div class="mb-3">
+              <label class="form-label">Endereço:</label>
+              <input type="text" class="form-control" name="endereco" required>
             </div>
-            <div class="coluna">
-              <label>Data da Solicitação:</label>
-              <input type="date" name="data">
+            <div class="row">
+              <div class="col">
+                <label class="form-label">Título Eleitoral:</label>
+                <input type="text" class="form-control" name="titulo">
+              </div>
+              <div class="col">
+                <label class="form-label">Zona Eleitoral:</label>
+                <input type="text" class="form-control" name="zona">
+              </div>
             </div>
-          </div>
-
-        <div class="buttons">
-          <button type="submit" class="btn-green"><i class="fas fa-check"></i> Salvar</button>
-          <button type="reset" class="btn-gray"><i class="fas fa-times"></i> Cancelar</button>
+            <div class="row mt-3">
+              <div class="col">
+                <label class="form-label">Medicamento:</label>
+                <input type="text" class="form-control" name="medicamento">
+              </div>
+              <div class="col">
+                <label class="form-label">Data da Solicitação:</label>
+                <input type="date" class="form-control" name="data">
+              </div>
+            </div>
+            <div class="mt-4 d-flex gap-2">
+              <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
+              <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
+            </div>
+          </form>
         </div>
-      </form>
-    </section>
-
-    <section class="tabela">
-      <h2><i class="fas fa-pills"></i> Medicamentos Solicitados</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>CPF</th>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Titulo Eleitoral</th>
-            <th>Zona Eleitoral</th>
-            <th>Nome do Medicamento</th>
-            <th>Data da Solicitação</th>
-          </tr>
-        </thead>
-        <tbody id="listaMedicamentos">
-          <!-- Registros aparecerão aqui -->
-        </tbody>
-      </table>
-    </section>
-  </main>
-  <script>
-    window.onload = function () {
-  fetch('get_registros.php')
-    .then(response => response.json())
-    .then(data => {
-      const tbody = document.querySelector("table tbody");
-      tbody.innerHTML = '';
-
-      data.forEach(row => {
-        const tr = document.createElement("tr");
-        tr.dataset.id = row.id;
-        tr.innerHTML = `
-          <td>${row.cpf}</td>
-          <td>${row.nome}</td>
-          <td>${row.endereco}</td>
-          <td>${row.titulo_eleitoral}</td>
-          <td>${row.zona_eleitoral}</td>
-          <td>${row.nome_medicamento}</td>
-          <td>${row.data_solicitacao}</td>
-          <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)" title="Excluir">
-        <i class="fas fa-trash-alt"></i>
-        </button>
-        `;
-        tbody.appendChild(tr);
-      });
-    })
-    .catch(error => console.error("Erro ao buscar dados:", error));
-};
-    const cpfInput = document.getElementById("cpf");
-
-cpfInput.addEventListener("input", function () {
-  let value = cpfInput.value.replace(/\D/g, ''); // remove tudo que não for número
-
-  if (value.length > 11) value = value.slice(0, 11); // limita 11 dígitos
-
-  value = value.replace(/(\d{3})(\d)/, '$1.$2');
-  value = value.replace(/(\d{3})(\d)/, '$1.$2');
-  value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-
-  cpfInput.value = value;
-});
-    const form = document.getElementById("cadastroForm");
-    const tabela = document.getElementById("listaMedicamentos");
-  
-    form.addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  const cpf = form.querySelectorAll("input")[0].value;
-  const nome = form.querySelectorAll("input")[1].value;
-  const endereco = form.querySelectorAll("input")[2].value;
-  const titulo = form.querySelectorAll("input")[3].value;
-  const zona = form.querySelectorAll("input")[4].value;
-  const medicamento = form.querySelectorAll("input")[5].value;
-  const data = form.querySelectorAll("input")[6].value;
-
-  const dados = {
-    cpf: cpf,
-    nome: nome,
-    endereco: endereco,
-    titulo_eleitoral: titulo,
-    zona_eleitoral: zona,
-    nome_medicamento: medicamento,
-    data_solicitacao: data
-  };
-
-  try {
-    const response = await fetch("cadastrar.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(dados)
-    });
-
-    const resultado = await response.json();
-
-    if (resultado.status === "sucesso") {
-      // Adiciona na tabela
-      const novaLinha = document.createElement("tr");
-      novaLinha.innerHTML = `
-        <td>${cpf}</td>
-        <td>${nome}</td>
-        <td>${endereco}</td>
-        <td>${titulo}</td>
-        <td>${zona}</td>
-        <td>${medicamento}</td>
-        <td>${data}</td>
-        <button class="btn btn-sm btn-danger" onclick="deletarLinha(this)" title="Excluir">
-        <i class="fas fa-trash-alt"></i>
-        </button>
-
-      `;
-      tabela.appendChild(novaLinha);
-      mostrarToastBootstrap("Medicamento cadastrado com sucesso!", "success");
-
-
-
-    } else {
-      mostrarToastBootstrap("Erro ao cadastrar!", "error");
-
-
-
-    }
-
-    form.reset();
-  } catch (error) {
-    alert("Erro na requisição: " + error.message);
-  }
-});
-// Deletar linha
-function deletarLinha(botao) {
-  const linha = botao.closest("tr");
-  const id = linha.dataset.id;
-
-  fetch("deletar.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: id })
-  })
-  .then(res => res.json())
-  .then(response => {
-    if (response.status === "sucesso") {
-      linha.remove();
-      mostrarToastBootstrap("Solicitação Exluída ", "success");
-    } else {
-      mostrarToastBootstrap("Erro ao excluir ", "erro");
-    }
-  })
-  .catch(() => {
-    alert("Erro na conexão com o servidor.");
-  });
-}
-
-// Mostrar Pop Cadastro
-
-function mostrarToastBootstrap(mensagem, tipo = "success") {
-  const toastEl = document.getElementById("liveToast");
-  const toastBody = document.getElementById("toast-msg");
-
-  toastBody.textContent = mensagem;
-
-  // Define cor do toast (success ou danger)
-  toastEl.classList.remove("bg-success", "bg-danger");
-  toastEl.classList.add(tipo === "error" ? "bg-danger" : "bg-success");
-
-  const toast = new bootstrap.Toast(toastEl);
-  toast.show();
-}
-
-
-
-
-
-  </script>
- 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
-  <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body" id="toast-msg">
-        Mensagem aqui
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+
+      <!-- TABELA -->
+      <div class="col-md-7">
+        <div class="card shadow p-3">
+          <h4 class="mb-3"><i class="fas fa-pills"></i> Medicamentos Solicitados</h4>
+          <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Título</th>
+                <th>Zona</th>
+                <th>Medicamento</th>
+                <th>Data</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="listaMedicamentos"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST DE ALERTA -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+    <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body" id="toast-msg">Mensagem aqui</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
     </div>
   </div>
-</div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS FUNCIONALIDADE -->
+  <script>
+    window.onload = function () {
+      fetch('get_registros.php')
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById("listaMedicamentos");
+          tbody.innerHTML = '';
+          data.forEach(row => {
+            const tr = document.createElement("tr");
+            tr.dataset.id = row.id;
+            tr.innerHTML = `
+              <td>${row.cpf}</td>
+              <td>${row.nome}</td>
+              <td>${row.endereco}</td>
+              <td>${row.titulo_eleitoral}</td>
+              <td>${row.zona_eleitoral}</td>
+              <td>${row.nome_medicamento}</td>
+              <td>${row.data_solicitacao}</td>
+              <td><button class="btn btn-sm btn-danger" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(err => console.error("Erro ao buscar dados:", err));
+    };
+
+    const cpfInput = document.getElementById("cpf");
+    cpfInput.addEventListener("input", function () {
+      let value = cpfInput.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.slice(0, 11);
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      cpfInput.value = value;
+    });
+
+    const form = document.getElementById("cadastroForm");
+    const tabela = document.getElementById("listaMedicamentos");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const dados = {
+        cpf: form.querySelector("#cpf").value,
+        nome: form.querySelector("[name='nome']").value,
+        endereco: form.querySelector("[name='endereco']").value,
+        titulo_eleitoral: form.querySelector("[name='titulo']").value,
+        zona_eleitoral: form.querySelector("[name='zona']").value,
+        nome_medicamento: form.querySelector("[name='medicamento']").value,
+        data_solicitacao: form.querySelector("[name='data']").value
+      };
+
+      try {
+        const res = await fetch("cadastrar.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dados)
+        });
+
+        const result = await res.json();
+        if (result.status === "sucesso") {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${dados.cpf}</td>
+            <td>${dados.nome}</td>
+            <td>${dados.endereco}</td>
+            <td>${dados.titulo_eleitoral}</td>
+            <td>${dados.zona_eleitoral}</td>
+            <td>${dados.nome_medicamento}</td>
+            <td>${dados.data_solicitacao}</td>
+            <td><button class="btn btn-sm btn-danger" onclick="deletarLinha(this)"><i class="fas fa-trash-alt"></i></button></td>
+          `;
+          tabela.appendChild(tr);
+          mostrarToastBootstrap("Medicamento cadastrado com sucesso!", "success");
+          form.reset();
+        } else {
+          mostrarToastBootstrap("Erro ao cadastrar!", "error");
+        }
+      } catch (err) {
+        alert("Erro: " + err.message);
+      }
+    });
+
+    function deletarLinha(botao) {
+      const linha = botao.closest("tr");
+      const id = linha.dataset.id;
+
+      fetch("deletar.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id })
+      })
+      .then(res => res.json())
+      .then(resp => {
+        if (resp.status === "sucesso") {
+          linha.remove();
+          mostrarToastBootstrap("Solicitação excluída com sucesso", "success");
+        } else {
+          mostrarToastBootstrap("Erro ao excluir", "error");
+        }
+      })
+      .catch(() => alert("Erro ao conectar ao servidor."));
+    }
+
+    function mostrarToastBootstrap(msg, tipo) {
+      const toast = document.getElementById("liveToast");
+      const body = document.getElementById("toast-msg");
+
+      body.textContent = msg;
+      toast.classList.remove("bg-success", "bg-danger");
+      toast.classList.add(tipo === "error" ? "bg-danger" : "bg-success");
+
+      new bootstrap.Toast(toast).show();
+    }
+  </script>
 
 </body>
 </html>
