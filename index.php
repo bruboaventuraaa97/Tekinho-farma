@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Tekim Farma</title>
+  <title>Instituto Ana Farma</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Estilo e ícones -->
@@ -13,7 +13,7 @@
 
   <!-- TOPO -->
   <header class="bg-primary text-white text-center py-3">
-    <h1>💊  <img src="logo-instituto-ana.png" alt="Logo Instituto ANA" style="width: 300px;"> Farma</h1>
+    <h1>💊  <img src="logo-instituto-ana.png" alt="Logo Instituto ANA" style=""> Farma</h1>
   </header>
 
   <!-- CONTEÚDO -->
