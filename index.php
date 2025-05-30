@@ -13,7 +13,7 @@
 
   <!-- TOPO -->
   <header class="bg-primary text-white text-center py-3">
-    <h1>💊 Tekim Farma</h1>
+    <h1>💊  <img src="logo-instituto-ana.png" alt="Logo Instituto ANA" style="width: 300px;"> Farma</h1>
   </header>
 
   <!-- CONTEÚDO -->
