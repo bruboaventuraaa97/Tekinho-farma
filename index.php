@@ -12,7 +12,7 @@
 <body>
 <style>
     header {
-      background-color: #d62828;
+      background-color: #B0C4DE;
       padding: 30px 0;
     }
     .logo {
@@ -30,7 +30,7 @@
 
   <!-- Header com logo -->
   <header class="text-center">
-    <img src="logo-instituto-ana-farma.png" alt="Logo Instituto Ana Farma" class="logo mb-2">
+    <img src="logo-instituto-ana.png" alt="Logo Instituto Ana Farma" class="logo mb-2">
   </header>
 
   <!-- CONTEÚDO -->
