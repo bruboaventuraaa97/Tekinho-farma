@@ -54,75 +54,84 @@
 
   <!-- CONTEÚDO -->
   <main class="container my-4">
-    <div class="row">
-      <!-- FORMULÁRIO -->
-      <div class="col-md-5 mb-4 section" id="solicitar">
-        <div class="card shadow p-3">
-          <h4 class="mb-3"><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h4>
-          <form id="cadastroForm">
-            <div class="mb-3">
-              <label class="form-label">CPF:</label>
-              <input type="text" class="form-control" maxlength="14" placeholder="000.000.000-00" id="cpf" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Nome:</label>
-              <input type="text" class="form-control" name="nome" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Endereço:</label>
-              <input type="text" class="form-control" name="endereco" required>
-            </div>
-            <div class="row">
-              <div class="col">
-                <label class="form-label">Título Eleitoral:</label>
-                <input type="text" class="form-control" name="titulo">
-              </div>
-              <div class="col">
-                <label class="form-label">Zona Eleitoral:</label>
-                <input type="text" class="form-control" name="zona">
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col">
-                <label class="form-label">Medicamento:</label>
-                <input type="text" class="form-control" name="medicamento">
-              </div>
-              <div class="col">
-                <label class="form-label">Data da Solicitação:</label>
-                <input type="date" class="form-control" name="data">
-              </div>
-            </div>
-            <div class="mt-4 d-flex justify-content-center gap-2">
-              <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
-              <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
-            </div>
-          </form>
-        </div>
-      </div>
 
-      <!-- TABELA -->
-      <div class="col-md-7">
-        <div class="card shadow p-3">
-          <h4 class="mb-3"><i class="fas fa-pills"></i> Medicamentos Solicitados</h4>
-          <table class="table table-bordered table-hover align-middle">
-            <thead class="table-light">
-              <tr>
-                <th>CPF</th>
-                <th>Nome</th>
-                <th>Endereço</th>
-                <th>Título</th>
-                <th>Zona</th>
-                <th>Medicamento</th>
-                <th>Data</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody id="listaMedicamentos"></tbody>
-          </table>
+  <!-- SEÇÃO SOLICITAR -->
+  <div class="section" id="solicitar">
+    <div class="card shadow p-4">
+      <h4 class="mb-3"><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h4>
+      <form id="cadastroForm">
+        <div class="mb-3">
+          <label class="form-label">CPF:</label>
+          <input type="text" class="form-control" maxlength="14" placeholder="000.000.000-00" id="cpf" required>
         </div>
-      </div>
+        <div class="mb-3">
+          <label class="form-label">Nome:</label>
+          <input type="text" class="form-control" name="nome" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Endereço:</label>
+          <input type="text" class="form-control" name="endereco" required>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label class="form-label">Título Eleitoral:</label>
+            <input type="text" class="form-control" name="titulo">
+          </div>
+          <div class="col">
+            <label class="form-label">Zona Eleitoral:</label>
+            <input type="text" class="form-control" name="zona">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <label class="form-label">Medicamento:</label>
+            <input type="text" class="form-control" name="medicamento">
+          </div>
+          <div class="col">
+            <label class="form-label">Data da Solicitação:</label>
+            <input type="date" class="form-control" name="data">
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-center gap-2">
+          <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
+          <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
+        </div>
+      </form>
     </div>
-  </main>
+  </div>
+
+  <!-- SEÇÃO VISUALIZAR -->
+  <div class="section" id="visualizar" style="display: none;">
+    <div class="card shadow p-4">
+      <h4 class="mb-3"><i class="fas fa-pills"></i> Medicamentos Solicitados</h4>
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Título</th>
+            <th>Zona</th>
+            <th>Medicamento</th>
+            <th>Data</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="listaMedicamentos"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEÇÃO ESTOQUE (opcional futura) -->
+  <div class="section" id="estoque" style="display: none;">
+    <div class="card shadow p-4">
+      <h4 class="mb-3"><i class="fas fa-box"></i> Cadastro de Estoque</h4>
+      <!-- Conteúdo futuro -->
+    </div>
+  </div>
+
+</main>
+
 
   <!-- TOAST DE ALERTA -->
   <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
