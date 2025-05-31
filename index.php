@@ -18,7 +18,7 @@
 }
 
 .logo {
-  height: 60px; /* ou ajuste conforme necessário */
+  height: 200px; /* ou ajuste conforme necessário */
   max-width: 100%;
 }
     .card {
