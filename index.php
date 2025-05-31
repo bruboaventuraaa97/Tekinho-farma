@@ -12,9 +12,12 @@
 <body>
 
   <!-- TOPO -->
-  <header class="bg-primary text-white text-center py-3">
-    <h1>  <img src="logo-instituto-ana.png" alt="Logo Instituto ANA" style="width: 100px;"> Farma 💊</h1>
-  </header>
+  <header class="bg-primary py-2">
+  <div class="container d-flex align-items-center justify-content-center">
+    <img src="logo.png" alt="Logo Instituto" class="logo me-3">
+    <h1 class="text-white mb-0 fs-2">Farma 💊</h1>
+  </div>
+</header>
 
   <!-- CONTEÚDO -->
   <main class="container my-4">
