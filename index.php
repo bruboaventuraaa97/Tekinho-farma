@@ -11,13 +11,16 @@
 </head>
 <body>
 <style>
-    header {
-      background-color: #E8F5E9;
-      padding: 30px 0;
-    }
-    .logo {
-      height: 300px;
-    }
+   header {
+  background-color: #e8f5e9; /* verde claro suave */
+  padding: 16px 0; /* reduz o espaçamento vertical */
+  text-align: center;
+}
+
+.logo {
+  height: 60px; /* ou ajuste conforme necessário */
+  max-width: 100%;
+}
     .card {
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
