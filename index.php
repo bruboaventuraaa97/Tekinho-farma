@@ -13,12 +13,12 @@
 <style>
    header {
   background-color: #e8f5e9; /* verde claro suave */
-  padding: 5px 0; /* reduz o espaçamento vertical */
+  padding: 0px 0; /* reduz o espaçamento vertical */
   text-align: center;
 }
 
 .logo {
-  height: 150px; /* ou ajuste conforme necessário */
+  height: 200px; /* ou ajuste conforme necessário */
   max-width: 100%;
 }
     .card {
