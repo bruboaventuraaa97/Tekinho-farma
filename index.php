@@ -53,7 +53,7 @@
 
 
   <!-- CONTEÚDO -->
-  <main class="container my-4" style ="padding-top: 150px">
+  <main class="container my-4" style ="padding-top: 130px">
 
   <!-- SEÇÃO SOLICITAR -->
   <div class="section" id="solicitar">
@@ -357,14 +357,14 @@ async function atualizarTabelaPorCpf(cpf) {
 
     // Seção Navbar
 
-    <script>
+   
   function mostrarSecao(id) {
     document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
     document.getElementById(id).style.display = 'block';
   }
 
   window.addEventListener("DOMContentLoaded", () => mostrarSecao("solicitar"));
-</script>
+
 
   </script>
 
