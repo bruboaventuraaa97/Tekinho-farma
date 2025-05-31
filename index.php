@@ -32,7 +32,7 @@
 
   <!-- Header com logo -->
   
-  <nav class="navbar navbar-expand-lg navbar-light  fixed-top shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="logo-instituto-ana.png" class="logo me-2" style="height: 100px;" alt="Logo">
