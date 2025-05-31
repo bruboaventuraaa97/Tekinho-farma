@@ -15,7 +15,7 @@ try {
       zona_eleitoral = :zona,
       nome_medicamento = :medicamento,
       data_solicitacao = :data,
-      status = :status,
+      status = :status
       WHERE id = :id");
 
     $stmt->execute([
