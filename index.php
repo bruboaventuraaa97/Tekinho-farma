@@ -10,13 +10,28 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<style>
+    header {
+      background-color: #d62828;
+      padding: 30px 0;
+    }
+    .logo {
+      height: 60px;
+    }
+    .card {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .table th {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
 
-  <!-- TOPO -->
-  <header class="bg-danger py-2">
-  <div class="container d-flex align-items-center justify-content-center">
-  <img src="logo-instituto-ana.png" alt="Logo Instituto Ana Farma" class="me-3" style="height: 200px;">
-  </div>
-</header>
+  <!-- Header com logo -->
+  <header class="text-center">
+    <img src="logo-instituto-ana-farma.png" alt="Logo Instituto Ana Farma" class="logo mb-2">
+  </header>
 
   <!-- CONTEÚDO -->
   <main class="container my-4">
