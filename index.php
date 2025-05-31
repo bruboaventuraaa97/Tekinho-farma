@@ -35,12 +35,30 @@
   <header class="text-center">
     <img src="logo-instituto-ana.png" alt="Logo Instituto Ana Farma" class="logo mb-2">
   </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo-instituto-ana.png" class="logo me-2" style="height: 40px;" alt="Logo">
+      Instituto Ana Farma
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarSecao('solicitar')">Solicitar</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarSecao('estoque')">Estoque</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="mostrarSecao('visualizar')">Visualizar</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
   <!-- CONTEÚDO -->
   <main class="container my-4">
     <div class="row">
       <!-- FORMULÁRIO -->
-      <div class="col-md-5 mb-4">
+      <div class="col-md-5 mb-4 section" id="solicitar">
         <div class="card shadow p-3">
           <h4 class="mb-3"><i class="fas fa-plus-circle"></i> Solicitação de Medicamentos</h4>
           <form id="cadastroForm">
@@ -329,6 +347,18 @@ async function atualizarTabelaPorCpf(cpf) {
 
 
     window.onload = carregarTabela;
+
+    // Seção Navbar
+
+    <script>
+  function mostrarSecao(id) {
+    document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+  }
+
+  window.addEventListener("DOMContentLoaded", () => mostrarSecao("solicitar"));
+</script>
+
   </script>
 
 </body>
