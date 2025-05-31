@@ -12,11 +12,11 @@
 <body>
 <style>
     header {
-      background-color: #B0C4DE;
+      background-color: #E8F5E9;
       padding: 30px 0;
     }
     .logo {
-      height: 150px;
+      height: 300px;
     }
     .card {
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
