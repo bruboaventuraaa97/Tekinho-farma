@@ -14,7 +14,7 @@
   <!-- TOPO -->
   <header class="bg-danger py-2">
   <div class="container d-flex align-items-center justify-content-center">
-  <img src="logo-instituto-ana.png" alt="Logo Instituto Ana Farma" class="me-3" style="height: 300px;">
+  <img src="logo-instituto-ana.png" alt="Logo Instituto Ana Farma" class="me-3" style="height: 200px;">
   </div>
 </header>
 
