@@ -14,7 +14,8 @@ try {
       titulo_eleitoral = :titulo,
       zona_eleitoral = :zona,
       nome_medicamento = :medicamento,
-      data_solicitacao = :data
+      data_solicitacao = :data,
+      status = :status,
       WHERE id = :id");
 
     $stmt->execute([
@@ -25,6 +26,7 @@ try {
       ':zona' => $input['zona_eleitoral'],
       ':medicamento' => $input['nome_medicamento'],
       ':data' => $input['data_solicitacao'],
+      ':status' => $input['status'],
       ':id' => $input['id']
     ]);
 
@@ -32,9 +34,9 @@ try {
   } else {
     // Inserir
     $stmt = $pdo->prepare("INSERT INTO medicamentos_solicitados (
-      cpf, nome, endereco, titulo_eleitoral, zona_eleitoral, nome_medicamento, data_solicitacao
+      cpf, nome, endereco, titulo_eleitoral, zona_eleitoral, nome_medicamento, data_solicitacao,status
     ) VALUES (
-      :cpf, :nome, :endereco, :titulo, :zona, :medicamento, :data
+      :cpf, :nome, :endereco, :titulo, :zona, :medicamento, :data,:status
     )");
 
     $stmt->execute([
@@ -44,7 +46,8 @@ try {
       ':titulo' => $input['titulo_eleitoral'],
       ':zona' => $input['zona_eleitoral'],
       ':medicamento' => $input['nome_medicamento'],
-      ':data' => $input['data_solicitacao']
+      ':data' => $input['data_solicitacao'],
+      ':status' => $input['status']
     ]);
 
     echo json_encode(["status" => "sucesso", "acao" => "inserido"]);

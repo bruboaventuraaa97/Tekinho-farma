@@ -91,9 +91,13 @@
             <label class="form-label">Data da Solicitação:</label>
             <input type="date" class="form-control" name="data">
           </div>
+          <div class="col" >
+            <label class="form-label">Staus:</label>
+            <input type="text"  class="form-control" name="status" value ="Pendente de Entrega" style ="color: Orange">
+          </div>
         </div>
         <div class="mt-4 d-flex justify-content-center gap-2">
-          <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Salvar</button>
           <button type="reset" class="btn btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
         </div>
       </form>
@@ -107,6 +111,7 @@
       <table class="table table-bordered table-hover align-middle">
         <thead class="table-light">
           <tr>
+            
             <th>CPF</th>
             <th>Nome</th>
             <th>Endereço</th>
@@ -114,6 +119,7 @@
             <th>Zona</th>
             <th>Medicamento</th>
             <th>Data</th>
+            <th>Status</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -173,7 +179,7 @@
       document.querySelector("[name='zona']").value = dados[4].textContent.trim();
       document.querySelector("[name='medicamento']").value = dados[5].textContent.trim();
       document.querySelector("[name='data']").value = dados[6].textContent.trim();
-
+      document.querySelector("[name='status']").value = dados[7].textContent.trim();
       idEditando = linha.dataset.id;
       linha.remove();
     }
@@ -189,7 +195,8 @@
         titulo_eleitoral: form.querySelector("[name='titulo']").value,
         zona_eleitoral: form.querySelector("[name='zona']").value,
         nome_medicamento: form.querySelector("[name='medicamento']").value,
-        data_solicitacao: form.querySelector("[name='data']").value
+        data_solicitacao: form.querySelector("[name='data']").value,
+        status : form.querySelector("[name='status']").value
       };
 
       try {
@@ -234,6 +241,7 @@
             <td>${row.zona_eleitoral}</td>
             <td>${row.nome_medicamento}</td>
             <td>${row.data_solicitacao}</td>
+            <td>${row.status}</td>
             <td>
               <button class="btn btn-sm btn-primary me-2" onclick="editarLinha(this)">
                 <i class="fas fa-pen"></i>
@@ -335,6 +343,7 @@ async function atualizarTabelaPorCpf(cpf) {
         <td>${row.zona_eleitoral}</td>
         <td>${row.nome_medicamento}</td>
         <td>${row.data_solicitacao}</td>
+        <td>${row.status}</td>
         <td>
           <button class="btn btn-sm btn-primary me-2" onclick="editarLinha(this)">
             <i class="fas fa-pen"></i>
