@@ -3,6 +3,9 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #e6f0fa;
   color: #333;
+  padding-top: 80px; /* compensa a altura da navbar fixa */
+  
+  
 }
 
 header {
