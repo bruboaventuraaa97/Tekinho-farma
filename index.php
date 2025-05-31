@@ -53,7 +53,7 @@
 
 
   <!-- CONTEÚDO -->
-  <main class="container my-4" style ="padding-top: 80px">
+  <main class="container my-4" style ="padding-top: 100px">
 
   <!-- SEÇÃO SOLICITAR -->
   <div class="section" id="solicitar">
