@@ -11,10 +11,9 @@
 </head>
 <body>
 <style>
-   header {
+   .nav {
   background-color: #e8f5e9; /* verde claro suave */
-  padding: 0px 0; /* reduz o espaçamento vertical */
-  text-align: center;
+  
 }
 
 .logo {
@@ -32,13 +31,11 @@
 <body>
 
   <!-- Header com logo -->
-  <header class="text-center">
-    <img src="logo-instituto-ana.png" alt="Logo Instituto Ana Farma" class="logo mb-2">
-  </header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+  
+  <nav class="navbar navbar-expand-lg navbar-light  fixed-top shadow-sm">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="logo-instituto-ana.png" class="logo me-2" style="height: 40px;" alt="Logo">
+      <img src="logo-instituto-ana.png" class="logo me-2" style="height: 100px;" alt="Logo">
       Instituto Ana Farma
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
